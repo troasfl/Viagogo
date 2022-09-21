@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace InterviewAssignment.Tests
 {
     public class EmailCampaignServiceTest
     {
-        private List<Event> _events;
         private EmailCampaignService _emailCampaignService;
+        private List<Event> _events;
 
         [SetUp]
         public void Setup()
@@ -37,7 +36,7 @@ namespace InterviewAssignment.Tests
             var customer = new Customer { Name = "Mr. Fake", City = "New York" };
             var events = _emailCampaignService.GetCityEvents(customer, _events).ToList();
             var actual = events.Count;
-            
+
             Assert.IsTrue(expected.Equals(actual));
         }
 
@@ -48,12 +47,12 @@ namespace InterviewAssignment.Tests
             var customer = new Customer { Name = "Mr. Fake", City = "New York" };
             var closestEvents = _emailCampaignService.GetClosestEvents(customer, _events).ToList();
             var actual = closestEvents.Count;
-            
+
             Assert.IsTrue(expected.Equals(actual));
         }
-        
+
         #endregion
-        
+
         #region JohnSmithTests
 
         [Test]
@@ -63,7 +62,7 @@ namespace InterviewAssignment.Tests
             var customer = new Customer { Name = "John Smith" };
             var events = _emailCampaignService.GetCityEvents(customer, _events).ToList();
             var actual = events.Count;
-            
+
             Assert.IsTrue(expected.Equals(actual));
         }
 
@@ -74,10 +73,10 @@ namespace InterviewAssignment.Tests
             var customer = new Customer { Name = "John Smith" };
             var closestEvents = _emailCampaignService.GetClosestEvents(customer, _events).ToList();
             var actual = closestEvents.Count;
-            
+
             Assert.IsTrue(expected.Equals(actual));
         }
-        
+
         #endregion
 
         #region LisaTests
@@ -86,10 +85,10 @@ namespace InterviewAssignment.Tests
         public void GetUpcomingEventsForLisaInLosAngeles_ShouldReturn_OneEvent()
         {
             var expected = 1;
-            var customer = new Customer{ Name = "Lisa", City = "Los Angeles"};
+            var customer = new Customer { Name = "Lisa", City = "Los Angeles" };
             var events = _emailCampaignService.GetCityEvents(customer, _events).ToList();
             var actual = events.Count;
-            
+
             Assert.IsTrue(expected.Equals(actual));
         }
 
@@ -97,13 +96,13 @@ namespace InterviewAssignment.Tests
         public void Top3ClosestUpcomingEventsForLisaInLosAngeles_ShouldReturn_ThreeEvents()
         {
             var expected = 3;
-            var customer = new Customer{ Name = "Lisa", City = "Los Angeles"};
+            var customer = new Customer { Name = "Lisa", City = "Los Angeles" };
             var closestEvents = _emailCampaignService.GetClosestEvents(customer, _events, 3).ToList();
             var actual = closestEvents.Count;
-            
+
             Assert.IsTrue(expected.Equals(actual));
         }
-        
+
         #endregion
     }
 }
