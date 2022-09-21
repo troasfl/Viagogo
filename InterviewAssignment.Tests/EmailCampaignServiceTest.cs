@@ -80,5 +80,30 @@ namespace InterviewAssignment.Tests
         
         #endregion
 
+        #region LisaTests
+
+        [Test]
+        public void GetUpcomingEventsForLisaInLosAngeles_ShouldReturn_OneEvent()
+        {
+            var expected = 1;
+            var customer = new Customer{ Name = "Lisa", City = "Los Angeles"};
+            var events = _emailCampaignService.GetCityEvents(customer, _events).ToList();
+            var actual = events.Count;
+            
+            Assert.IsTrue(expected.Equals(actual));
+        }
+
+        [Test]
+        public void Top3ClosestUpcomingEventsForLisaInLosAngeles_ShouldReturn_ThreeEvents()
+        {
+            var expected = 3;
+            var customer = new Customer{ Name = "Lisa", City = "Los Angeles"};
+            var closestEvents = _emailCampaignService.GetClosestEvents(customer, _events, 3).ToList();
+            var actual = closestEvents.Count;
+            
+            Assert.IsTrue(expected.Equals(actual));
+        }
+        
+        #endregion
     }
 }
